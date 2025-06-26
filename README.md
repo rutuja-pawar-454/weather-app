@@ -1,12 +1,33 @@
-# React + Vite
+# 🌤️ WeatherApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive weather application built with **React**, **Vite**, and **Material UI**, which fetches real-time weather data using the **OpenWeatherMap API**.
 
-Currently, two official plugins are available:
+Live Demo: [https://weather-app-react-04.netlify.app/]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+
+- 🌍 Search any city for current weather info
+- 📊 Displays:
+  - Temperature (°C)
+  - Feels like
+  - Humidity
+  - Min/Max Temperature
+  - Weather description
+- 🌈 Dynamic background and icons based on weather
+- ⚡ Fast and modern UI using Material UI
+- 📱 Responsive design for mobile & desktop
+
+---
+
+## 🛠️ Tech Stack
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Material UI](https://mui.com/)
+- [OpenWeatherMap API](https://openweathermap.org/)
+- [Netlify](https://www.netlify.com/) for deployment
+
+---
