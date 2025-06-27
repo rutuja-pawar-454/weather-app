@@ -1,4 +1,3 @@
-// InfoBox.jsx
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -7,6 +6,7 @@ import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import './InfoBox.css';
+import { motion, AnimatePresence } from 'framer-motion'; // ⬅️ Imported for animation
 
 export default function InfoBox({ info }) {
   const HOT_URL =
@@ -25,49 +25,59 @@ export default function InfoBox({ info }) {
   return (
     <div className="InfoBox">
       <div className="cardContainer">
-        <Card
-          sx={{
-            maxWidth: 345,
-            borderRadius: '20px',
-            background: 'rgba(255, 255, 255, 0.15)',
-            backdropFilter: 'blur(10px)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
-            color: '#333',
-            margin: 'auto',
-          }}
-        >
-          <CardMedia
-            sx={{ height: 140 }}
-            image={
-              info.humidity > 80 ? RAIN_URL : info.temp > 18 ? HOT_URL : COLD_URL
-            }
-            title="Weather Image"
-          />
-          <CardContent>
-            <Typography
-              gutterBottom
-              variant="h5"
-              component="div"
-              sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={info.city} // <-- triggers animation on city change
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Card
+              sx={{
+                maxWidth: 345,
+                borderRadius: '20px',
+                background: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+                color: '#333',
+                margin: 'auto',
+              }}
             >
-              {info.city} {getIcon()}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="text.secondary"
-              component={'span'}
-              sx={{ lineHeight: 1.6 }}
-            >
-              <p>🌡️ Temperature = {info.temp}&deg;C</p>
-              <p>💧 Humidity = {info.humidity}%</p>
-              <p>🔻 Min Temp = {info.tempMin}&deg;C</p>
-              <p>🔺 Max Temp = {info.tempMax}&deg;C</p>
-              <p>
-                🌥️ Description: <i>{info.weather}</i>, feels like {info.feelsLike}&deg;C
-              </p>
-            </Typography>
-          </CardContent>
-        </Card>
+              <CardMedia
+                sx={{ height: 140 }}
+                image={
+                  info.humidity > 80 ? RAIN_URL : info.temp > 18 ? HOT_URL : COLD_URL
+                }
+                title="Weather Image"
+              />
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                  sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}
+                >
+                  {info.city} {getIcon()}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  component={'span'}
+                  sx={{ lineHeight: 1.6 }}
+                >
+                  <p>🌡️ Temperature = {info.temp}&deg;C</p>
+                  <p>💧 Humidity = {info.humidity}%</p>
+                  <p>🔻 Min Temp = {info.tempMin}&deg;C</p>
+                  <p>🔺 Max Temp = {info.tempMax}&deg;C</p>
+                  <p>
+                    🌥️ Description: <i>{info.weather}</i>, feels like {info.feelsLike}&deg;C
+                  </p>
+                </Typography>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </AnimatePresence>
       </div>
     </div>
   );
